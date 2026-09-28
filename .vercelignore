@@ -1,0 +1,6 @@
+work/
+outputs/
+.local/
+.git/
+.env*
+node_modules/
