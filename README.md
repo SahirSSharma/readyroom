@@ -8,7 +8,11 @@ Readyroom is a web demonstration for students and small donated-clothing closets
 
 ## Try the demonstration
 
-Deployment target: [readyroom-youcam.vercel.app](https://readyroom-youcam.vercel.app). Deployment availability is not yet verified in this document.
+Live app: [readyroom-youcam.vercel.app](https://readyroom-youcam.vercel.app). Public availability verified September 27, 2026.
+
+Demo: [Watch the 1:58 walkthrough](https://youtu.be/1m99EJVRicA).
+
+Source: [SahirSSharma/readyroom](https://github.com/SahirSSharma/readyroom). See [verification evidence](docs/VERIFICATION.md) and [API evidence](docs/API-EVIDENCE.md).
 
 1. Open the fitting room. A signed browser cookie creates your isolated demonstration closet; no account is required.
 2. Choose a sample person or upload a photograph you have permission to use. Select one of the six sample blazers and inspect its illustrative measurements.

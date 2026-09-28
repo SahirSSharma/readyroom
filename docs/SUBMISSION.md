@@ -1,6 +1,6 @@
 # Readyroom — submission draft
 
-Status: preparation in progress, September 27, 2026. Registration is complete, 1,000 promotional API credits were redeemed, and the first live Clothes V4 preview succeeded. The final project has not been submitted. Deployed-app behavior, public repository access, and a published video must each be verified before those claims are entered in Devpost.
+Status: September 27, 2026. Readyroom is built and publicly deployed, and its complete source repository is accessible without signing in. Registration is complete and 1,000 promotional API units were redeemed. The 1 minute 58 second English demonstration video is published on YouTube; signed-out playback was verified. The final project has not been submitted.
 
 ## Project name
 
@@ -38,13 +38,13 @@ Readyroom connects a visualization to a specific item and a working pickup proce
 
 ## Engineering challenges and verified evidence
 
-- **Concurrent reservations:** twelve local attempts to hold one item produced exactly one successful reservation. Six simultaneous first-time holds against the private Blob store likewise produced one winner and five conflicts.
-- **State transitions:** tests cover expiry at the exact deadline, duplicate collection rejection, return to availability, and a collected item's persistence after its original hold deadline.
-- **Isolation and request boundaries:** tests reject altered session signatures, cross-origin writes, invalid workspace paths, and attempts to modify another workspace's reservation.
-- **Provider-storage behavior:** a live test found that one Blob contention response was surfaced as a generic error rather than the SDK's dedicated precondition error. Bounded retry handling was adjusted for that observed response. Five concurrent live counter increments then persisted without losing an unrelated task field.
-- **YouCam feasibility:** the first real Clothes V4 outerwear task, using the fictional Alex portrait and navy blazer, returned `task_status: success` on September 27, 2026. Its recorded submission and successful status responses are preserved as internal evidence. Further sample-result inspection and deployed route verification remain separate checks.
+- **Build and tests:** all 18 unit tests, TypeScript checks, and the production build passed. Tests cover concurrent holds, expiry, pickup and return, session signatures, request origins, workspace isolation, photo validation, metadata stripping, task ownership, preview budgets, and the provider request format.
+- **Durable inventory:** six simultaneous first-time holds against the private Blob store produced one winner. Four concurrent reservation attempts on the public deployment produced one success and three conflicts. Collection and return persisted; duplicate collection was rejected.
+- **Storage correctness:** testing exposed weak ETags on compressed responses. Requesting the identity representation restored conditional writes. A larger-state regression preserved all five concurrent increments and the original task field.
+- **Live YouCam integration:** the public site generated and displayed a fresh Alex/navy preview through its actual browser controls. A separate real PNG upload of the fictional Jordan portrait with the charcoal blazer completed in 13 seconds. Its result was a 1024×1536 JPEG served with private, no-store headers. Another session could access neither the task nor its image.
+- **Public access and interface:** the app and source repository were verified without authentication. Browser checks exercised preview comparison, hold, collection, and return. Layouts were inspected at 390px and 2000px without horizontal overflow. The video uses captures of the actual interface.
 
-These are engineering checks, not evidence of user impact. No student study, demand estimate, conversion improvement, or deployment availability is claimed by this draft. A successful preview task is also not evidence of guaranteed garment fidelity or physical fit.
+The detailed record is in [VERIFICATION.md](VERIFICATION.md). These are engineering checks, not evidence of user impact. No student study, demand estimate, or conversion improvement is claimed. A successful preview task does not establish garment fidelity or physical fit.
 
 ## What we learned
 
@@ -56,21 +56,21 @@ Evaluate garment fidelity and the decision flow with people who opt in. Establis
 
 ## Judge testing instructions
 
-1. Open the verified deployment URL in a fresh browser session. No signup is required.
+1. Open [Readyroom](https://readyroom-youcam.vercel.app) in a fresh browser session. No signup is required.
 2. Choose a built-in sample person and a garment; inspect the source and illustrative measurements.
 3. Accept the processing consent and inspect a saved sample if offered. Then explicitly request a fresh live preview. Wait for the actual provider result; note any error without substituting a cached image.
 4. Choose a demonstration pickup day and hold the garment. Confirm the pickup pass and item status.
 5. Open Pickup desk, collect the reservation, then return the item. Confirm it becomes available again.
 6. Optionally hold another item and release it. A second private-browsing session should start with its own untouched rack.
 
-## Links to verify before submitting
+## Submission artifacts
 
 | Required artifact | Current status |
 | --- | --- |
-| Working app | Target: `https://readyroom-youcam.vercel.app`; live availability pending verification. |
-| Complete source repository and license | Local source and MIT license prepared; public repository URL/access pending verification. |
-| Public 1–3 minute YouTube/Vimeo video | Script prepared; recording, publication, and anonymous access pending verification. |
-| Free judge access | Designed for no-signup access; deployed access and credit headroom pending verification. |
+| Working app | [Readyroom](https://readyroom-youcam.vercel.app) — anonymous access and deployed workflow verified. |
+| Complete source repository and license | [GitHub repository](https://github.com/SahirSSharma/readyroom) — public access verified; source, setup instructions, and MIT license included. |
+| Public 1–3 minute YouTube/Vimeo video | [Public demonstration video](https://youtu.be/1m99EJVRicA) — 117.598 seconds, 1080p, actual edited app captures with synthesized English narration. Published September 27 with English captions; signed-out playback verified. |
+| Free judge access | No signup or payment required; verified on the public deployment. Saved YouCam examples remain available; fresh attempts are bounded to preserve promotional units. |
 | Final Devpost submission | Not submitted; no receipt exists in this document. |
 
 ## Timing and eligibility note
